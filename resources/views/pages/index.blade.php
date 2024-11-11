@@ -24,6 +24,7 @@
         max-width: 100vw;
         height: 100%;
         object-fit: cover;
+       object-position: center;
     }
 
     .slider .buttons {
@@ -97,10 +98,12 @@
 @section('content')
     <div class="slider">
         <div class="list">
+            @foreach($slides as $slide)
             <div class="item">
-                <img src="{{ asset('storage/manual/slide/slide1.png') }}" alt="">
+                <img src="{{ asset('storage/manual/slide/' .$slide->img) }}" alt="">
             </div>
-            <div class="item">
+            @endforeach
+            <!-- <div class="item">
                 <img src="{{ asset('storage/manual/slide/slide2.png') }}" alt="">
             </div>
             <div class="item">
@@ -114,7 +117,7 @@
             </div>
             <div class="item">
                 <img src="{{ asset('storage/manual/slide/slide6.png') }}" alt="">
-            </div>
+            </div> -->
         </div>
         <div class="buttons">
             <button id="prev"><</button>

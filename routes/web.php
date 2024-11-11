@@ -4,10 +4,14 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+
+use App\Http\Controllers\Admin\AdminPagesController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Admin\InterfaceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -59,6 +63,33 @@ Route::post('/cart/update/{productId}', [CartController::class, 'updateQuantity'
 Route::get('/product/{id}', [ProductController::class, 'getProductDetails'])->name('product.details');
 
 Route::get('/products/categories/{category_id}', [ProductController::class, 'ProductWithCategory'])->name('product.productWithCategory');
+
+
+Route::get('/admin', [AdminPagesController::class, 'index']);
+// Product
+Route::get('/listProduct', [AdminPagesController::class, 'listProduct'])->name('admin.listProduct');
+Route::get('/addProduct', [AdminPagesController::class, 'addProduct'])->name('admin.addProduct');
+
+// Brand
+Route::get('/listBrand', [AdminPagesController::class, 'listBrand'])->name('admin.listBrand');
+Route::get('/addBrand', [AdminPagesController::class, 'addBrand'])->name('admin.addBrand');
+
+// account
+Route::get('/listAdmin', [AdminPagesController::class, 'listAdmin'])->name('admin.listAdmin');
+Route::get('/addAdmin', [AdminPagesController::class, 'addAdmin'])->name('admin.addAdmin');
+Route::get('/listUser', [AdminPagesController::class, 'listUser'])->name('admin.listUser');
+
+// interface
+
+Route::get('/updateInterface', [AdminPagesController::class, 'updateInterface'])->name('admin.updateInterface');
+Route::post('/updateInterface/logo', [InterfaceController::class, 'updateLogo'])->name('update.logo');
+Route::post('/updateInterface/footer', [InterfaceController::class, 'updateFooter'])->name('update.footer');
+Route::post('/updateInterface/slides', [InterfaceController::class, 'updateSlides'])->name('update.slides');
+Route::post('/updateInterface/header', [InterfaceController::class, 'updateHeader'])->name('update.header');
+
+
+
+
 
 
 

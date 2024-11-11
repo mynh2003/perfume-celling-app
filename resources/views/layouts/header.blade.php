@@ -1,12 +1,12 @@
 
 <div class="banner bg-dark-red">
-    HỆ THỐNG PHÂN PHỐI NƯỚC HOA CHÍNH HÃNG HÀNG ĐẦU VIỆT NAM VỚI 50 CỬA HÀNG TRÊN TOÀN QUỐC
+    {{$header->first()->text}}
 </div>
 <div class="topcenter">
     <div class="container">
         <div class="topcenter-inner clearfix">
             <a href="/" class="logo">
-                <img src="{{ asset('storage/manual/logo/logo.jpg')}}" alt="">
+                <img src="{{ asset('storage/manual/logo/' .$logo->first()->image)}}" alt="">
             </a>
             <div class="search">
                 <div class="search-item search-text">
