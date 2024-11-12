@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Logo;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
@@ -19,4 +21,6 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+    // Hàm gửi email đặt lại mật khẩu
+    
 }

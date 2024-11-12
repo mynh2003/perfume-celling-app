@@ -68,12 +68,12 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Tên tài khoản') }}</label>
 
                             <div class="col-md-8">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                                @error('email')
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -103,14 +103,13 @@
                                     <label class="form-check-label" for="remember">
                                         {{ __('Ghi nhớ tôi') }}
                                     </label>
-                                    
                                 </div>
                                 <label for="">
                                     @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Quên mật khẩu?') }}
                                     </a>
-                                @endif
+                                    @endif
                                 </label>
                             </div>
                         </div>
@@ -120,8 +119,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Đăng Nhập') }}
                                 </button>
-
-                                
                             </div>
                         </div>
                     </form>
@@ -134,3 +131,4 @@
     </div>
 </div>
 @endsection
+

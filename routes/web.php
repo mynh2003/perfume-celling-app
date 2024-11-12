@@ -18,7 +18,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Auth;
 
 // Đường dẫn đăng nhập và đăng ký
-Auth::routes();
+// Auth::routes();
 // Đăng nhập
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -39,7 +39,7 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 // Các route liên quan đến thông tin người dùng
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
-    Route::post('/user/profile', [UserController::class, 'updateProfile'])->name('user.updateProfile');
+    Route::post('/user/profile/{id}', [UserController::class, 'update'])->name('user.updateProfile');
 });
 
 
