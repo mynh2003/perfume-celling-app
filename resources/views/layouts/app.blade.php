@@ -978,14 +978,6 @@
         <header>
             @include('layouts.header')
         </header>
-        <section class="row-breadcrumb">
-            <div class="container">
-                <a href="">
-                <i class="fa fa-forward"></i>
-                Trang chủ
-                </a>
-            </div>
-        </section>
         <main class="py-4">
             <section class="main container dp-flex flex-grow1">
                 <div class="sidebar"> 
