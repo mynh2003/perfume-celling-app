@@ -96,6 +96,7 @@
 </style>
 @endsection
 @section('content')
+
     <div class="slider">
         <div class="list">
             @foreach($slides as $slide)

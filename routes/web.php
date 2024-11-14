@@ -18,8 +18,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\ProductsController;
-
-
+use App\Http\Controllers\OrderController;
 
 // Đường dẫn đăng nhập và đăng ký
 // Auth::routes();
@@ -64,8 +63,13 @@ Route::post('/cart/remove/{productId}', [CartController::class, 'remove'])->name
 Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::post('/cart/update/{productId}', [CartController::class, 'updateQuantity']);
 
-Route::get('/product/{id}', [ProductController::class, 'getProductDetails'])->name('product.details');
+// Route cho thanh toán và đặt hàng
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
+Route::get('/order/success/{orderId}', [OrderController::class, 'viewOrder'])->name('order.success');
+Route::get('/orders/history', [OrderController::class, 'orderHistory'])->name('orders.history');
 
+Route::get('/product/{id}', [ProductController::class, 'getProductDetails'])->name('product.details');
 Route::get('/products/categories/{category_id}', [ProductController::class, 'ProductWithCategory'])->name('product.productWithCategory');
 
 
@@ -106,5 +110,7 @@ Route::delete('/products/{id}', [ProductsController::class, 'delete'])->name('pr
 // Route sửa sản phẩm
 Route::get('/products/{id}/edit', [ProductsController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [ProductsController::class, 'update'])->name('products.update');
+
+
 
 

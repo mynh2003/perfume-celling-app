@@ -61,9 +61,20 @@
                 <button type="submit" class="btn btn-danger ">Xóa hết giỏ hàng</button>
             </form>
             
-            <form action="" method="POST" style="margin-top: 20px;">
-                <button type="submit" class="btn btn-danger ">Mua hàng</button>
+            <form action="{{ route('checkout') }}" style="margin-top: 20px;" id="orderForm">
+                <button type="submit" class="btn btn-primary btn-lg w-100" id="submitButton">
+                    Mua hàng
+                    <span id="loadingSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                </button>
             </form>
+            
+            <script>
+                document.getElementById('orderForm').addEventListener('submit', function () {
+                    document.getElementById('submitButton').disabled = true;
+                    document.getElementById('loadingSpinner').style.display = 'inline-block';
+                });
+            </script>
+            
             
         </div>
     @else

@@ -64,7 +64,7 @@
                             </div>
                         </li>
                     @endguest
-                    <a href="">Lịch sử mua hàng</a>
+                    <a href="{{ route('orders.history') }}">Lịch sử mua hàng</a>
                 </div>
                 <div class="cart">
                     <a href="/cart">
