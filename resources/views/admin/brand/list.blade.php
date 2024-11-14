@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('admin-content')
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 <div class="container-fluid px-4 container-brand">
     <div style="margin: auto; margin-top: 20px; text-align: center;">
         <h3>Thương hiệu</h3>
@@ -12,21 +17,31 @@
             <tr>
                 <th scope="col">STT</th>
                 <th scope="col">Tên thương hiệu</th>
-                <th scope="col">Mô tả</th>
                 <th scope="col">Thao tác</th>
             </tr>
         </thead>
         <tbody>
             <!-- Hiển thị dữ liệu mẫu -->
+            @foreach($brands as $brand)
             <tr>
-                <td scope="row">1</td>
-                <td>Thương hiệu A</td>
-                <td>Mô tả thương hiệu A</td>
+                <td>{{ $brand->id }}</td>
+                <td>{{ $brand->name }}</td>
                 <td>
-                    <a href="#" style="display: inline; margin-right: 10px;"><i class="fas fa-edit"></i></a>
-                    <button onclick='return confirm("Bạn có chắc chắn muốn xóa thương hiệu này?")'><i style="color: red" class="fas fa-trash-alt"></i></button>
+                    <!-- Nút Sửa -->
+                    <a href="{{ route('brand.edit', $brand->id) }}" style="display: inline; margin-right: 10px;">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <!-- Nút Xóa -->
+                    <form action="{{ route('brand.delete', $brand->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button onclick='return confirm("Bạn có chắc chắn muốn xóa thương hiệu này?")' style="border: none; background: none;">
+                            <i style="color: red" class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
     <div class="row">

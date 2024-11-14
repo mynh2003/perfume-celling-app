@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
 use App\Http\Controllers\Admin\AdminPagesController;
-
+use App\Http\Controllers\Admin\BrandController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
@@ -16,6 +16,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\Admin\ProductsController;
+
+
 
 // Đường dẫn đăng nhập và đăng ký
 // Auth::routes();
@@ -87,9 +91,20 @@ Route::post('/updateInterface/footer', [InterfaceController::class, 'updateFoote
 Route::post('/updateInterface/slides', [InterfaceController::class, 'updateSlides'])->name('update.slides');
 Route::post('/updateInterface/header', [InterfaceController::class, 'updateHeader'])->name('update.header');
 
+//note
+Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create');
+Route::get('/brand/{id}/edit', [BrandController::class, 'edit'])->name('brand.edit');
+Route::post('/brand/{id}', [BrandController::class, 'update'])->name('brand.update');
+Route::delete('/brand/{id}', [BrandController::class, 'delete'])->name('brand.delete');
 
 
+Route::post('/products/create', [ProductsController::class, 'create'])->name('products.create');
+
+Route::delete('/products/{id}', [ProductsController::class, 'delete'])->name('products.delete');
 
 
+// Route sửa sản phẩm
+Route::get('/products/{id}/edit', [ProductsController::class, 'edit'])->name('products.edit');
+Route::put('/products/{id}', [ProductsController::class, 'update'])->name('products.update');
 
 

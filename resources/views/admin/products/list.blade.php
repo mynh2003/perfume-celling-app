@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('admin-content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="container-fluid px-4 container-product">
     <div style="margin: auto; margin-top: 20px; text-align: center;">
         <h3>Sản phẩm</h3>
@@ -35,7 +40,7 @@
                 <td>{{ $product->brand->name ?? 'Chưa xác định' }}</td>
                 <td>{{ $product->category->name ?? 'Chưa xác định' }}</td>
                 <td class="details-cell">{{ $product->details }}</td>
-                <td><img class="product-img" src="{{ asset('storage/manual/product/' . $product->image_1) }}" alt=""></td>
+                <td><img class="product-img" src="{{ asset('storage/manual/product/'. $product->image_1) }}" alt=""></td>
                 <td>{{ $product->origin }}</td>
                 <td>{{ $product->collection }}</td>
                 <td>{{ $product->rel }}</td>
@@ -46,12 +51,14 @@
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>
-                    <a href="">
+                    <!-- Button sửa -->
+                    <a href="{{ route('products.edit', $product->id) }}">
                         <button class="btn btn-primary">Sửa</button>
                     </a>
-                    <form action="" method="POST" style="display:inline;">
-                        <!-- @csrf
-                        @method('DELETE') -->
+                    <!-- Form xóa -->
+                    <form action="{{ route('products.delete', $product->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
                         <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">Xóa</button>
                     </form>
                 </td>
@@ -62,7 +69,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="product-pagination-container">
-                
+
             </div>
         </div>
     </div>
