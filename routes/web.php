@@ -18,6 +18,9 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UsersController;
+
 
 
 
@@ -107,4 +110,19 @@ Route::delete('/products/{id}', [ProductsController::class, 'delete'])->name('pr
 Route::get('/products/{id}/edit', [ProductsController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [ProductsController::class, 'update'])->name('products.update');
 
+//admin
+Route::get('/account/listAdmin', [AdminController::class, 'index'])->name('account.index');
+Route::post('/account/addAdmin', [AdminController::class, 'store'])->name('account.store');
+
+Route::get('/account/edit/{id}', [AdminController::class, 'edit'])->name('account.edit');
+
+// Route xử lý sửa tài khoản admin
+Route::post('/account/edit/{id}', [AdminController::class, 'update'])->name('account.update');
+
+// Route xử lý xóa tài khoản admin
+Route::delete('/account/delete/{id}', [AdminController::class, 'delete'])->name('account.delete');
+
+
+Route::get('/account/listUser', [UsersController::class, 'index'])->name('account.index');
+Route::delete('/account/{id}', [UsersController::class, 'destroy'])->name('account.destroy');
 
