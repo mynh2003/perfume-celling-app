@@ -36,7 +36,10 @@ class ProductController extends Controller
     public function ProductWithCategory(Request $request, $category_id)
     {
         $products = Product::with(['category'])->where('category_id', $category_id)->get();
-        return view('pages.products', compact('products','category_id'));
+        return view('pages.products', compact('products', 'category_id'));
     }
+
+    /// note
+    
 
 }
