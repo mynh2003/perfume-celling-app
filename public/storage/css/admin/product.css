@@ -1,0 +1,120 @@
+/* .container-product .table td,
+.container-product .table th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.container-product .product-pagination-container {
+    text-align: center;
+}
+
+.container-product .pagination-link {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container-product .pagination-link.active {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+.container-product .pagination-link:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+.container-product button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.container-product button i {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.container-product button:hover i {
+    color: #0056b3;
+}
+.product-img{
+    width: 100px;
+    height: 100px;
+}
+.container-product button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+} */
+
+/* CSS cho bảng sản phẩm */
+.container-product {
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f8f9fa; /* Màu nền nhẹ */
+    border-radius: 5px; /* Bo góc */
+}
+
+.container-product h3 {
+    font-size: 24px; /* Kích thước chữ tiêu đề */
+    color: #343a40; /* Màu chữ tiêu đề */
+}
+
+.container-product p {
+    font-size: 14px; /* Kích thước chữ cho đoạn văn */
+    color: red; /* Màu chữ đoạn văn */
+    text-align: right;
+}
+
+.container-product .table {
+    width: 100%; /* Chiều rộng bảng */
+    margin-top: 20px;
+    border-collapse: collapse; /* Gộp các đường viền */
+}
+
+.container-product .thead-dark {
+    background-color: #343a40; /* Màu nền cho tiêu đề bảng */
+    color: #ffffff; /* Màu chữ cho tiêu đề bảng */
+}
+
+.container-product .table th, 
+.container-product .table td {
+    padding: 10px; /* Khoảng cách bên trong ô */
+    text-align: left; /* Căn trái cho chữ trong ô */
+    border: 1px solid #dee2e6; /* Đường viền ô */
+    vertical-align: middle;
+}
+
+.container-product .product-img {
+    width: 50px; /* Chiều rộng ảnh sản phẩm */
+    height: auto; /* Chiều cao tự động */
+}
+
+.container-product .btn {
+    margin-right: 5px; /* Khoảng cách giữa các nút */
+}
+
+.product-pagination-container {
+    margin-top: 20px; /* Khoảng cách trên cho phân trang */
+    text-align: center; /* Căn giữa cho phân trang */
+}
+
+/* Thêm các quy tắc khác nếu cần */

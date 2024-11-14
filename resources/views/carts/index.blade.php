@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <div class="cart-container">
+@if(session('error'))
+    <div class="alert alert-error">
+        {{ session('error') }}
+    </div>
+@endif
     <h2>Giỏ hàng của bạn</h2>
 
     @if(count($cartItems) > 0)
@@ -29,7 +34,7 @@
                         <td>
                             <div class="quantity-control">
                                 <button class="btn btn-decrease" data-id="{{ $item->product_id }}">-</button>
-                                <input type="number" class="quantity-input" value="{{ $item->quantity }}" min="1" data-id="{{ $item->product_id }}">
+                                <input type="number" class="quantity-input" value="{{ $item->quantity }}" min="1" data-id="{{ $item->product_id }}" data-max-quantity="{{ $item->product->quantity }}">
                                 <button class="btn btn-increase" data-id="{{ $item->product_id }}">+</button>
                             </div>
                         </td>

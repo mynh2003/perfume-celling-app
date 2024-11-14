@@ -1,0 +1,46 @@
+.container-brand .table td,
+.container-brand .table th {
+    vertical-align: middle;
+    text-align: center;
+}
+.container-brand button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer; 
+}
+.container-brand button i {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+.container-brand button:hover i {
+    color: #0056b3;
+}
+.container-brand .product-pagination-container {
+    text-align: center;
+}
+.container-brand .pagination-link {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000000;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+.container-brand .pagination-link.active {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+.container-brand .pagination-link:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
