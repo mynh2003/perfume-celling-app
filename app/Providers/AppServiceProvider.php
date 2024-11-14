@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
@@ -10,6 +11,7 @@ use App\Models\Header;
 use App\Models\Logo;
 use App\Models\Product;
 use App\Models\Slide;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -40,11 +42,14 @@ class AppServiceProvider extends ServiceProvider
             $footer = Footer::all();
             $slides = Slide::all();
             $logo = Logo::all();
-
+            $admins = Admin::all();
+            $users = User::all();
 
             $view->with([
                 'user' => $user,
+                'users' => $users,
                 'brands' => $brands,
+                'admins' => $admins,
                 'categories' => $categories,
                 'carts' => $carts,
                 'totalProductCart' => $totalProductCart,
