@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -93,15 +94,39 @@
             color: var(--text-color)!important;
         }
         
-        /* ---START HEADER--- */
+        /* START HEADER*/
         header .banner{
-            font-size: 15px;
-            font-weight: 700;
             text-align: center;
             font-family: utm avo;
             color: #fff;
             padding: 9px 0;
-            
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            /* overflow: hidden;     */
+        }
+        header .marquee-wrapper {
+            display: flex;
+            white-space: nowrap;
+            position: absolute;
+            animation: scrollText 10s linear infinite;
+        }
+        header .marquee-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            padding-right: 50px;
+        }
+
+        @keyframes scrollText {
+            from {
+                transform: translateX(120%); 
+            }
+            to {
+                transform: translateX(-120%); 
+            }
         }
         header .topcenter{
             width: 100%;
@@ -210,28 +235,27 @@
             float: left;
         }
         .cart {
-            position: relative; /* Để định vị số lượng sản phẩm */
+            position: relative; 
         }
 
         .cart-count {
             position: absolute;
-            top: -5px; /* Điều chỉnh vị trí theo nhu cầu */
-            right: -10px; /* Điều chỉnh vị trí theo nhu cầu */
-            color: white; /* Màu chữ */
-            border-radius: 50%; /* Tạo hình tròn */
-            width: 20px; /* Chiều rộng của vòng tròn */
-            height: 20px; /* Chiều cao của vòng tròn */
-            display: flex; /* Để căn giữa chữ */
-            align-items: center; /* Căn giữa theo chiều dọc */
-            justify-content: center; /* Căn giữa theo chiều ngang */
-            font-size: 12px; /* Kích thước chữ */
-            font-weight: bold; /* Đậm chữ */
+            top: -5px; 
+            right: -10px; 
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 12px; 
+            font-weight: bold; 
             
         }
 
-        /* Hiển thị khi có sản phẩm */
         .cart-count.show {
-            display: flex; /* Hiển thị khi có sản phẩm */
+            display: flex; 
         }
         .topcart .cart a{
             display: inline-block;
@@ -273,7 +297,6 @@
             -webkit-transition: all .3s ease-in-out;
             -moz-transition: all .3s ease-in-out;
             -o-transition: all .3s ease-in-out;
-            /* visibility: hidden; */
         }
         .categories-menu>li {
             height: 50px;
@@ -374,9 +397,9 @@
             font-family: utm avo;
             color: #333; 
         }
-        /* ---END HEADER--- */
+        /* END HEADER */
 
-        /* ---START CONTENT--- */
+        /* START CONTENT */
         .row-breadcrumb{
             background-color: rgba(0,0,0,.79);
             font-size: 15px;
@@ -406,7 +429,7 @@
             background-color: #fff;
             flex-grow: 1;
         }
-        /* ===============SIDERBAR-CSS-START=============== */
+        /* SIDERBAR-CSS-START */
         .heading {
             margin-bottom: 30px;
             border-bottom: 1px solid #333;
@@ -487,9 +510,9 @@
         .blog-item-link:hover a{
             color: #c8202d;
         }
-        /* ===============SIDERBAR-CSS-START=============== */
+        /* SIDERBAR-CSS-START */
 
-        /* ===============PRODUCTS-CSS-START=============== */
+        /* PRODUCTS-CSS-START */
         .products-header{
             position: relative;
             margin: 14px 0;
@@ -738,9 +761,9 @@
             border-color: #ddd;
         }   
 
-        /* ===============PRODUCTS-CSS-END=============== */
+        /* PRODUCTS-CSS-END */
 
-        /* ===============ABOUT-CSS-END=============== */
+        /* ABOUT-CSS-END */
         .post-image{
             padding: 6px 12px;
         }
@@ -777,9 +800,9 @@
         .post-content p{
             text-align: justify
         }
-        /* ===============ABOUT-CSS-END=============== */
+        /* ABOUT-CSS-END */
 
-        /* ===============CONTACT-CSS-END=============== */
+        /* CONTACT-CSS-END */
         .container-contact{
             font-family: open sans, sans-serif;
             color: #333333;
@@ -919,11 +942,11 @@
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
         }
 
-        /* ===============CONTACT-CSS-END=============== */
+        /* CONTACT-CSS-END */
 
-        /* ---END CONTENT--- */
+        /* END CONTENT */
 
-        /* ---START FOOTER--- */
+        /* START FOOTER */
         footer{
             color: #fff;
             font-weight: lighter;
@@ -967,67 +990,11 @@
             position: relative;
         }
        
-        /* ---END FOOTER--- */
-        
+        /* END FOOTER */
     </style>
-    <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 <body>
     <div id="app">
-        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav> --}}    
         <header>
             @include('layouts.header')
         </header>
@@ -1045,8 +1012,9 @@
         </main>
         <footer class="bg-gray">
             @include('layouts.footer')
-        </footer>
-        <script src="{{ asset('storage/js/cart.js') }}"></script>
+        </footer> 
     </div>
+    <script src="{{ asset('storage/js/cart.js') }}"></script>
+    
 </body>
 </html>

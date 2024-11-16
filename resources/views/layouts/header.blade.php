@@ -1,5 +1,7 @@
-<div class="banner bg-dark-red">
-    {{$header->first()->text}}
+<div class="banner bg-dark-red overflow-hidden position-relative">
+    <div class="marquee-wrapper">
+        <span class="marquee-text">{{$header->first()->text}}</span>
+    </div>
 </div>
 <div class="topcenter">
     <div class="container">
@@ -34,12 +36,6 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
                             </li>
                         @endif
-
-                        {{-- @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif --}}
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
