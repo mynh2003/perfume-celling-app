@@ -51,6 +51,17 @@
                             <a class="nav-link" href="{{ route('admin.addProduct') }}">Thêm mới</a>
                         </nav>
                     </div>
+                    <!-- note -->
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseOrder" aria-expanded="false" aria-controls="collapsePages">
+                        <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                        Đơn hàng
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseOrder" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                            <a class="nav-link" href="{{ route('admin.orders.index') }}" style="margin-left: 0">Quản lý</a>
+                        </nav>
+                    </div>
                     <!-- quản lý giao diện -->
                     <div class="sb-sidenav-menu-heading">Quản lý giao diện</div>
                     <a class="nav-link collapsed" href="{{ route('admin.updateInterface') }}" >

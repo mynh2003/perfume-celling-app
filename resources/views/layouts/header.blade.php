@@ -1,4 +1,3 @@
-
 <div class="banner bg-dark-red">
     {{$header->first()->text}}
 </div>
@@ -127,5 +126,4 @@
             </div>
         </div> 
     </div>
-    <script src="{{ asset('js/cart.js') }}"></script>
 </div>

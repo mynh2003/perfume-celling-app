@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\Auth\UpdateAdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\InterfaceController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\TestMiddleware;
@@ -84,7 +85,7 @@ Route::get('/products/categories/{category_id}', [ProductController::class, 'Pro
 Route::prefix('admin')->group(function () {
     Route::get('/login', [LoginAdminController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [LoginAdminController::class, 'login']);
-    
+
 
     Route::middleware(AdminMiddleware::class)->group(function () { // Sử dụng middleware
         Route::get('/', [AdminPagesController::class, 'index'])->name('admin.index');
@@ -134,5 +135,11 @@ Route::prefix('admin')->group(function () {
         //user
         Route::get('/account/listUser', [UsersController::class, 'index'])->name('accountUser.index');
         Route::delete('/account/{id}', [UsersController::class, 'delete'])->name('accountUser.delete');
+
+        //order
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+        Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+        Route::post('/orders/{id}/update-status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+        Route::delete('/orders/{id}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
     });
 });

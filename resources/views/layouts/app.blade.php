@@ -13,6 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- note -->
+
     <link rel="stylesheet" href="/resources/css/style-header.css">
     <link rel="stylesheet" href="{{ asset('storage/css/cart.css') }}">
     <link rel="stylesheet" href="{{ asset('storage/css/product.css') }}">
@@ -996,9 +999,7 @@
         <footer class="bg-gray">
             @include('layouts.footer')
         </footer>
-        
         <script src="{{ asset('storage/js/cart.js') }}"></script>
-        
     </div>
 </body>
 </html>
