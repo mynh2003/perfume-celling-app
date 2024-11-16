@@ -9,7 +9,7 @@
     <div class="container-fluid px-4">
         <h3 class="mt-4">Thêm Tài Khoản Admin</h3>
 
-        <form action="{{ route('account.store') }}" method="POST">
+        <form action="{{ route('accountAdmin.create') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="txtadname">Tên Tài Khoản</label>

@@ -15,7 +15,7 @@ class AdminController extends Controller
     }
 
     // Thêm tài khoản admin
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
             'txtadname' => 'required|unique:admin,username',
@@ -30,7 +30,7 @@ class AdminController extends Controller
         $admin->password = bcrypt($request->pass);
         $admin->save();
 
-        return redirect()->route('account.index')->with('success', 'Thêm tài khoản thành công');
+        return redirect()->route('accountAdmin.index')->with('success', 'Thêm tài khoản thành công');
     }
     public function edit($id)
     {
@@ -58,7 +58,7 @@ class AdminController extends Controller
 
         $admin->save();
 
-        return redirect()->route('account.index')->with('success', 'Cập nhật tài khoản thành công');
+        return redirect()->route('accountAdmin.index')->with('success', 'Cập nhật tài khoản thành công');
     }
 
     // Xóa tài khoản admin
@@ -67,6 +67,6 @@ class AdminController extends Controller
         $admin = Admin::findOrFail($id);
         $admin->delete();
 
-        return redirect()->route('account.index')->with('success', 'Xóa tài khoản thành công');
+        return redirect()->route('accountAdmin.index')->with('success', 'Xóa tài khoản thành công');
     }
 }

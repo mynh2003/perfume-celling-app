@@ -2,26 +2,50 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Admin extends Model
+class Admin extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
-    protected $table = 'admin'; // Tên bảng trong CSDL
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'username',
+        'name',
+        'email',
+        'password',
+    ];
 
-    // Các thuộc tính có thể được gán
-    protected $fillable = ['username', 'fullname', 'password'];
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-    // Mã hóa mật khẩu trước khi lưu
-    public static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($admin) {
-            $admin->password = bcrypt($admin->password); // Mã hóa mật khẩu
-        });
-    }
-    public $timestamps = false;
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /**
+     * Specify the guard for Admin.
+     */
+    protected $guard = 'admin';
 }
+

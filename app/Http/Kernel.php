@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -22,6 +23,6 @@ class Kernel extends HttpKernel
     ];
 
     protected $routeMiddleware = [
-        // Route middleware
+     
     ];
 }

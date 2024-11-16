@@ -5,7 +5,7 @@
     <div class="container form-text">
         <div class="row">
             <div class="col-sm-12">
-                <h2 style="margin: auto; margin-top: 20px; text-align: center;">Quản lý sản phẩm</h2>
+                <h2 style="margin: auto; margin-top: 20px; text-align: center;">Thêm sản phẩm</h2>
             </div>
             <div class="col-sm-12">
                 <form action="{{ route('products.create') }}" method="POST" enctype="multipart/form-data">

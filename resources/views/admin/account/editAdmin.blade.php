@@ -9,7 +9,7 @@
     <div class="container-fluid px-4">
         <h3 class="mt-4">Sửa Tài Khoản Admin</h3>
 
-        <form action="{{ route('account.update', $admin->id) }}" method="POST">
+        <form action="{{ route('accountAdmin.update', $admin->id) }}" method="POST">
             @csrf
             @method('POST')
             <div class="form-group">
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="txtname">Họ và Tên</label>
-                <input type="text" class="form-control" id="txtname" name="txtname" value="{{ $admin->fullname }}" required>
+                <input type="text" class="form-control" id="txtname" name="txtname" value="{{ $admin->name }}" required>
                 @error('txtname')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

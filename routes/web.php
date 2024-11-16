@@ -4,28 +4,27 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-
-use App\Http\Controllers\Admin\AdminPagesController;
-use App\Http\Controllers\Admin\BrandController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\Admin\InterfaceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\OrderController;
 
+
+use App\Http\Controllers\Admin\Auth\LoginAdminController;
+use App\Http\Controllers\Admin\Auth\RegisterAdminController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UsersController;
-
-
-
-
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminPagesController;
+use App\Http\Controllers\Admin\Auth\UpdateAdminController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\InterfaceController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\TestMiddleware;
 
 // Đường dẫn đăng nhập và đăng ký
 // Auth::routes();
@@ -53,13 +52,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/', [PagesController::class, 'index'])->name('pages.index');
 Route::get('/home', [PagesController::class, 'index'])->name('pages.index');
 Route::get('/products', [PagesController::class, 'products'])->name('pages.products');
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 Route::get('/contact', [PagesController::class, 'contact'])->name('pages.contact');
-
-
 
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
@@ -80,59 +76,63 @@ Route::get('/product/{id}', [ProductController::class, 'getProductDetails'])->na
 Route::get('/products/categories/{category_id}', [ProductController::class, 'ProductWithCategory'])->name('product.productWithCategory');
 
 
-Route::get('/admin', [AdminPagesController::class, 'index']);
-// Product
-Route::get('/listProduct', [AdminPagesController::class, 'listProduct'])->name('admin.listProduct');
-Route::get('/addProduct', [AdminPagesController::class, 'addProduct'])->name('admin.addProduct');
-
-// Brand
-Route::get('/listBrand', [AdminPagesController::class, 'listBrand'])->name('admin.listBrand');
-Route::get('/addBrand', [AdminPagesController::class, 'addBrand'])->name('admin.addBrand');
-
-// account
-Route::get('/listAdmin', [AdminPagesController::class, 'listAdmin'])->name('admin.listAdmin');
-Route::get('/addAdmin', [AdminPagesController::class, 'addAdmin'])->name('admin.addAdmin');
-Route::get('/listUser', [AdminPagesController::class, 'listUser'])->name('admin.listUser');
-
-// interface
-
-Route::get('/updateInterface', [AdminPagesController::class, 'updateInterface'])->name('admin.updateInterface');
-Route::post('/updateInterface/logo', [InterfaceController::class, 'updateLogo'])->name('update.logo');
-Route::post('/updateInterface/footer', [InterfaceController::class, 'updateFooter'])->name('update.footer');
-Route::post('/updateInterface/slides', [InterfaceController::class, 'updateSlides'])->name('update.slides');
-Route::post('/updateInterface/header', [InterfaceController::class, 'updateHeader'])->name('update.header');
-
-//note
-Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create');
-Route::get('/brand/{id}/edit', [BrandController::class, 'edit'])->name('brand.edit');
-Route::post('/brand/{id}', [BrandController::class, 'update'])->name('brand.update');
-Route::delete('/brand/{id}', [BrandController::class, 'delete'])->name('brand.delete');
-
-
-Route::post('/products/create', [ProductsController::class, 'create'])->name('products.create');
-
-Route::delete('/products/{id}', [ProductsController::class, 'delete'])->name('products.delete');
-
-
-// Route sửa sản phẩm
-Route::get('/products/{id}/edit', [ProductsController::class, 'edit'])->name('products.edit');
-Route::put('/products/{id}', [ProductsController::class, 'update'])->name('products.update');
-
-//admin
-Route::get('/account/listAdmin', [AdminController::class, 'index'])->name('account.index');
-Route::post('/account/addAdmin', [AdminController::class, 'store'])->name('account.store');
-
-Route::get('/account/edit/{id}', [AdminController::class, 'edit'])->name('account.edit');
-
-// Route xử lý sửa tài khoản admin
-Route::post('/account/edit/{id}', [AdminController::class, 'update'])->name('account.update');
-
-// Route xử lý xóa tài khoản admin
-Route::delete('/account/delete/{id}', [AdminController::class, 'delete'])->name('account.delete');
-
-
-Route::get('/account/listUser', [UsersController::class, 'index'])->name('account.index');
-Route::delete('/account/{id}', [UsersController::class, 'destroy'])->name('account.destroy');
+// QUẢN TRỊ VIÊN
 
 
 
+
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [LoginAdminController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [LoginAdminController::class, 'login']);
+    
+
+    Route::middleware(AdminMiddleware::class)->group(function () { // Sử dụng middleware
+        Route::get('/', [AdminPagesController::class, 'index'])->name('admin.index');
+        Route::post('/logout', [LoginAdminController::class, 'logout'])->name('admin.logout');
+        Route::get('/register', [RegisterAdminController::class, 'showRegistrationForm'])->name('admin.register');
+        Route::post('/register', [RegisterAdminController::class, 'register']);
+
+        // Product
+        Route::get('/listProduct', [AdminPagesController::class, 'listProduct'])->name('admin.listProduct');
+        Route::get('/addProduct', [AdminPagesController::class, 'addProduct'])->name('admin.addProduct');
+
+        // Brand
+        Route::get('/listBrand', [AdminPagesController::class, 'listBrand'])->name('admin.listBrand');
+        Route::get('/addBrand', [AdminPagesController::class, 'addBrand'])->name('admin.addBrand');
+
+        // account
+        Route::get('/listAdmin', [AdminPagesController::class, 'listAdmin'])->name('admin.listAdmin');
+        // Route::get('/addAdmin', [AdminPagesController::class, 'addAdmin'])->name('admin.addAdmin');
+        Route::get('/listUser', [AdminPagesController::class, 'listUser'])->name('admin.listUser');
+
+        // interface
+        Route::get('/updateInterface', [AdminPagesController::class, 'updateInterface'])->name('admin.updateInterface');
+        Route::post('/updateInterface/logo', [InterfaceController::class, 'updateLogo'])->name('update.logo');
+        Route::post('/updateInterface/footer', [InterfaceController::class, 'updateFooter'])->name('update.footer');
+        Route::post('/updateInterface/slides', [InterfaceController::class, 'updateSlides'])->name('update.slides');
+        Route::post('/updateInterface/header', [InterfaceController::class, 'updateHeader'])->name('update.header');
+
+        //brand
+        Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create');
+        Route::get('/brand/{id}/edit', [BrandController::class, 'edit'])->name('brand.edit');
+        Route::post('/brand/{id}', [BrandController::class, 'update'])->name('brand.update');
+        Route::delete('/brand/{id}', [BrandController::class, 'delete'])->name('brand.delete');
+
+        //product
+        Route::post('/products/create', [ProductsController::class, 'create'])->name('products.create');
+        Route::delete('/products/{id}', [ProductsController::class, 'delete'])->name('products.delete');
+        Route::get('/products/{id}/edit', [ProductsController::class, 'edit'])->name('products.edit');
+        Route::put('/products/{id}', [ProductsController::class, 'update'])->name('products.update');
+
+        //admin
+        Route::get('/account/listAdmin', [AdminController::class, 'index'])->name('accountAdmin.index');
+        // Route::post('/account/addAdmin', [AdminController::class, 'create'])->name('accountAdmin.create');
+        Route::get('/admin/update/{id}', [UpdateAdminController::class, 'showUpdateForm'])->name('admin.update.form');
+        Route::post('/admin/update/{id}', [UpdateAdminController::class, 'update'])->name('admin.update');
+        Route::delete('/account/delete/{id}', [AdminController::class, 'delete'])->name('accountAdmin.delete');
+
+        //user
+        Route::get('/account/listUser', [UsersController::class, 'index'])->name('accountUser.index');
+        Route::delete('/account/{id}', [UsersController::class, 'delete'])->name('accountUser.delete');
+    });
+});

@@ -12,7 +12,7 @@ class UsersController extends Controller
         $users = User::all();
         return view('admin.account.listUser', compact('users'));
     }
-    public function destroy($id)
+    public function delete($id)
     {
         // Tìm tài khoản theo ID và xóa
         $user = User::findOrFail($id);
@@ -21,6 +21,6 @@ class UsersController extends Controller
         $user->delete();
 
         // Trả về trang danh sách với thông báo thành công
-        return redirect()->route('account.index')->with('success', 'Xóa tài khoản thành công.');
+        return redirect()->route('accountUser.index')->with('success', 'Xóa tài khoản thành công.');
     }
 }

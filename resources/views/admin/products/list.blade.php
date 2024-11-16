@@ -10,7 +10,6 @@
     <div style="margin: auto; margin-top: 20px; text-align: center;">
         <h3>Sản phẩm</h3>
     </div>
-    <p style="text-align: right; color: red;">Hiển thị sản phẩm</p>
     <table class="table" style="margin-top: 20px;">
         <thead class="thead-dark">
             <tr>

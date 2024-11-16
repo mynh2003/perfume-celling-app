@@ -18,7 +18,7 @@
                                 <a class="nav-link" href="{{ route('admin.listUser') }}">Users</a>
                             </nav>
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('admin.addAdmin') }}">Thêm mới</a>
+                                <a class="nav-link" href="{{ route('admin.register') }}">Thêm mới</a>
                             </nav>
                         </div>
                     </div>

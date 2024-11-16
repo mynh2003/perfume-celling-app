@@ -10,7 +10,7 @@
     <div class="container form-text">
         <div class="row">
             <div class="col-sm-12">
-                <h3 style="margin: auto; margin-top: 20px; text-align: center;">Quản Lý Thương Hiệu</h3>
+                <h3 style="margin: auto; margin-top: 20px; text-align: center;">Thêm Thương Hiệu</h3>
             </div>
             <div class="col-sm-12">
                 <form action="{{ route('brand.create') }}" enctype="multipart/form-data">

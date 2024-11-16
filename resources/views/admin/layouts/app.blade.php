@@ -19,11 +19,14 @@
     <link rel="stylesheet" href="{{ asset('storage/css/admin/brand.css') }}">
     <link rel="stylesheet" href="{{ asset('storage/css/admin/product.css') }}">
     <link rel="stylesheet" href="{{ asset('storage/css/admin.css') }}">
-
-
 </head>
 
 <body class="sb-nav-fixed">
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
     <!-- Include navigation components -->
     @include('admin.layouts.nav')
     <div id="layoutSidenav">

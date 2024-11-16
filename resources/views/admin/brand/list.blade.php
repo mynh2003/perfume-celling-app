@@ -10,8 +10,6 @@
     <div style="margin: auto; margin-top: 20px; text-align: center;">
         <h3>Thương hiệu</h3>
     </div>
-    <!-- Nơi hiển thị bảng và phân trang -->
-    <p style="text-align: right; color: red;">Hiển thị thương hiệu</p>
     <table class="table" style="margin-top: 20px;">
         <thead class="thead-dark">
             <tr>

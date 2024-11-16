@@ -8,7 +8,7 @@
 @endif
 
 <div class="container-fluid px-4">
-    <h3 class="mt-4" style="text-align: center;">Danh Sách Tài Khoản</h3>
+    <h3 class="mt-4" style="text-align: center;">Danh Sách Tài Khoản Người Dùng</h3>
     
     <div class="table-responsive">
         <table class="table table-striped">
@@ -37,11 +37,8 @@
                     <td>{{ $user->ward }}</td>
                     <td>{{ $user->address }}</td>
                     <td>
-                        <!-- Nút chỉnh sửa tài khoản -->
-                        <!-- <a href="{{ route('account.edit', $user->id) }}" class="btn btn-primary btn-sm">Sửa</a> -->
-
-                        <!-- Nút xóa tài khoản -->
-                        <form action="{{ route('account.destroy', $user->id) }}" method="POST" style="display:inline;">
+                       
+                        <form action="{{ route('accountUser.delete', $user->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?')">Xóa</button>
