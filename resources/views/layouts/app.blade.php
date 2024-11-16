@@ -689,7 +689,54 @@
         .btn-secondary:hover {
             background-color: #5a6268; /* Màu nền khi hover */
         }
+        .pagination-container{
+            width: 100%;
+            display: flex;
+            
+        }
+        .pagination-custom{
+            margin: 0 auto;
+        }
+        .pagination-custom .pagination {
+            display: inline-flex;
+            list-style: none;
+            padding: 0;
+            margin: 20px auto; /* Đưa ra giữa */
+            background-color: #fff;
+            border-radius: 5px;
+        }
 
+        .pagination-custom .page-item {
+            margin: 0 5px;
+        }
+
+        .pagination-custom .page-link {
+            color: #a50c0c; /* Màu chủ đạo */
+            background-color: #fff;
+            border: 1px solid #a50c0c;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .pagination-custom .page-link:hover {
+            background-color: #a50c0c;
+            color: #fff;
+        }
+
+        .pagination-custom .page-item.active .page-link {
+            background-color: #a50c0c;
+            color: #fff;
+            border-color: #a50c0c;
+        }
+
+        .pagination-custom .page-item.disabled .page-link {
+            color: #ccc;
+            cursor: not-allowed;
+            background-color: #f8f9fa;
+            border-color: #ddd;
+        }   
 
         /* ===============PRODUCTS-CSS-END=============== */
 

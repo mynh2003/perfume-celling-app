@@ -35,7 +35,7 @@
                 <div class="modal-content">
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h5 class="modal-title" id="productName">MOSCHINO TOY BOY EDP</h5>
+                        <h5 class="modal-title" id="productName"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -104,7 +104,6 @@
                     <img src="{{ asset('storage/manual/product/' . $product->image_1) }}" alt="{{ $product->name }}">
                 </div>
                 <div>
-                    <a href="" class="btn btn_addcart hidden-xs">Mua Ngay</a>
                     <a href="javascript:void(0);" onclick="viewProduct({{ $product->id }})" class="btn btn_quick-view ajax">Xem Nhanh</a>
                 </div>
                 <div class="product-item-body">
@@ -123,46 +122,50 @@
            
         </div>
         @endforeach
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-             function notifyLogin() {
-                alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
-            }
-            function viewProduct(productId) {
-                $.ajax({
-                    url: '/product/' + productId,  
-                    method: 'GET',
-                    success: function(data) {
-                        $('#productName').text(data.name);
-                        $('#productDetails').text(data.details);
-                        $('#productBrand').text(data.brand);
-                        $('#productPrice').text(data.price.toLocaleString('vi-VN') + ' VNĐ');
-                        $('#productPriceBuy').text(data.price_buy);
-                        $('#productCategory').text(data.category);
-                        
-                        $('#productOrigin').text(data.origin);
-                        $('#productRel').text(data.rel);
-
-                        $('#productConcentration').text(data.concentration);
-                        $('#productFragrance').text(data.fragranceGroup);
-                        $('#productStyle').text(data.style);
-
-                        
-                        $('#productImage1').attr('src', '{{ asset("storage/manual/product/") }}/' + data.images[0]);
-                        $('#productImage2').attr('src', '{{ asset("storage/manual/product/") }}/' + data.images[1]);
-                        $('#productImage3').attr('src', '{{ asset("storage/manual/product/") }}/' + data.images[2]);
-                        $('#productModal').modal('show');
-                    },
-                    error: function() {
-                        alert("Không thể tải thông tin sản phẩm.");
-                    }
-                });
-            }
-            $(document).ready(function() {
-            $('#closeModalButton').click(function() {
-                $('#productModal').modal('hide'); // Ẩn modal
-            });
-        });
-        </script>
+       
     </div>
+    <div class="pagination-container">
+        {{ $products->links('vendor.pagination.bootstrap-4') }}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+         function notifyLogin() {
+            alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
+        }
+        function viewProduct(productId) {
+            $.ajax({
+                url: '/product/' + productId,  
+                method: 'GET',
+                success: function(data) {
+                    $('#productName').text(data.name);
+                    $('#productDetails').text(data.details);
+                    $('#productBrand').text(data.brand);
+                    $('#productPrice').text(data.price.toLocaleString('vi-VN') + ' VNĐ');
+                    $('#productPriceBuy').text(data.price_buy);
+                    $('#productCategory').text(data.category);
+                    
+                    $('#productOrigin').text(data.origin);
+                    $('#productRel').text(data.rel);
+
+                    $('#productConcentration').text(data.concentration);
+                    $('#productFragrance').text(data.fragranceGroup);
+                    $('#productStyle').text(data.style);
+
+                    
+                    $('#productImage1').attr('src', '{{ asset("storage/manual/product/") }}/' + data.images[0]);
+                    $('#productImage2').attr('src', '{{ asset("storage/manual/product/") }}/' + data.images[1]);
+                    $('#productImage3').attr('src', '{{ asset("storage/manual/product/") }}/' + data.images[2]);
+                    $('#productModal').modal('show');
+                },
+                error: function() {
+                    alert("Không thể tải thông tin sản phẩm.");
+                }
+            });
+        }
+        $(document).ready(function() {
+        $('#closeModalButton').click(function() {
+            $('#productModal').modal('hide'); // Ẩn modal
+        });
+    });
+    </script>
 @endsection

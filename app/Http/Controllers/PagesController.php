@@ -16,14 +16,12 @@ class PagesController extends Controller
         return view('pages.index');
     }
 
-    public function products() {
-        // $brands = Brand::all();
-        // $categories = Category::all();
-        $products = Product::all();
-        // $totalQuantity = CartHelper::getTotalQuantity($request);
-        // , compact('products', 'totalQuantity','categories','brands')
+    public function products()
+    {
+        $products = Product::paginate(12); // Phân trang 12 sản phẩm mỗi trang
         return view('pages.products', compact('products'));
     }
+    
 
     public function about() {
         // $brands = Brand::all();

@@ -35,11 +35,14 @@ class ProductController extends Controller
 
     public function ProductWithCategory(Request $request, $category_id)
     {
-        $products = Product::with(['category'])->where('category_id', $category_id)->get();
+        $products = Product::with(['category'])
+            ->where('category_id', $category_id)
+            ->paginate(12); // Hiển thị 12 sản phẩm mỗi trang
+
         return view('pages.products', compact('products', 'category_id'));
     }
 
     /// note
-    
+
 
 }
