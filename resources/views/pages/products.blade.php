@@ -35,7 +35,7 @@
                 <div class="modal-content">
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h5 class="modal-title" id="productName">MOSCHINO TOY BOY EDP</h5>
+                        <h5 class="modal-title" id="productName"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -104,7 +104,6 @@
                     <img src="{{ asset('storage/manual/product/' . $product->image_1) }}" alt="{{ $product->name }}">
                 </div>
                 <div>
-                    <a href="" class="btn btn_addcart hidden-xs">Mua Ngay</a>
                     <a href="javascript:void(0);" onclick="viewProduct({{ $product->id }})" class="btn btn_quick-view ajax">Xem Nhanh</a>
                 </div>
                 <div class="product-item-body">
