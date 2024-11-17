@@ -3,11 +3,7 @@
     vertical-align: middle;
     text-align: center;
 }
-.container-brand button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer; 
-}
+
 .container-brand button i {
     color: #007bff;
     transition: color 0.3s ease;

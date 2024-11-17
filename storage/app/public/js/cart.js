@@ -44,10 +44,15 @@ $(document).ready(function() {
         .then(data => {
             if (data.success) {
                 console.log('Cập nhật thành công:', data);
+                // Cập nhật lại tổng tiền nếu cần thiết
             } else {
                 console.error('Cập nhật thất bại:', data);
+                alert('Có lỗi xảy ra khi cập nhật số lượng.');
             }
         })
-        .catch(error => console.error('Lỗi:', error));
+        .catch(error => {
+            console.error('Lỗi:', error);
+            alert('Có lỗi xảy ra khi cập nhật số lượng.');
+        });
     });
 });

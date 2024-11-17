@@ -25,32 +25,21 @@
                 <td>{{ $brand->id }}</td>
                 <td>{{ $brand->name }}</td>
                 <td>
-                    <!-- Nút Sửa -->
-                    <a href="{{ route('brand.edit', $brand->id) }}" style="display: inline; margin-right: 10px;">
-                        <i class="fas fa-edit"></i>
+                    <a href="{{ route('brand.edit', $brand->id) }}">
+                        <button class="btn btn-primary flex-fill mx-1">Sửa</button>
                     </a>
-                    <!-- Nút Xóa -->
-                    <form action="{{ route('brand.delete', $brand->id) }}" method="POST" style="display: inline;">
+                    <form action="{{ route('brand.delete', $brand->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button onclick='return confirm("Bạn có chắc chắn muốn xóa thương hiệu này?")' style="border: none; background: none;">
-                            <i style="color: red" class="fas fa-trash-alt"></i>
-                        </button>
+                        <button class="btn btn-danger flex-fill mx-1" onclick="return confirm('Bạn có chắc chắn muốn xóa nhãn hàng này không?')">Xóa</button>
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="product-pagination-container">
-                <!-- Hiển thị các nút phân trang mẫu -->
-                <a class="pagination-link" href="#">1</a>
-                <a class="pagination-link active" href="#">2</a>
-                <a class="pagination-link" href="#">3</a>
-            </div>
-        </div>
+    <div class="pagination-container">
+        {{ $listBrand->links('vendor.pagination.bootstrap-4') }}
     </div>
 </div>
 @endsection

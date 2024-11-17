@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UI\Auth\ForgotPasswordController;
+use App\Http\Controllers\UI\Auth\LoginController;
+use App\Http\Controllers\UI\Auth\RegisterController;
+use App\Http\Controllers\UI\Auth\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UI\PagesController;
+use App\Http\Controllers\UI\ContactController;
+use App\Http\Controllers\UI\CartController;
+use App\Http\Controllers\UI\ProductController;
+use App\Http\Controllers\UI\UserController;
+use App\Http\Controllers\UI\OrderController;
 
 
 use App\Http\Controllers\Admin\Auth\LoginAdminController;
@@ -27,8 +27,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\TestMiddleware;
 
-// Đường dẫn đăng nhập và đăng ký
-// Auth::routes();
+
 // Đăng nhập
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -52,14 +51,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/profile/{id}', [UserController::class, 'update'])->name('user.updateProfile');
 });
 
-
+// Route cho hiển thị các menu
 Route::get('/home', [PagesController::class, 'index'])->name('pages.index');
 Route::get('/products', [PagesController::class, 'products'])->name('pages.products');
 Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
 Route::get('/contact', [PagesController::class, 'contact'])->name('pages.contact');
 
+//Route cho liên hệ
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
+// Route cho giỏ hàng
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/quantity', [CartController::class, 'getCartQuantity']);
 Route::get('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
@@ -67,7 +68,7 @@ Route::post('/cart/remove/{productId}', [CartController::class, 'remove'])->name
 Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::post('/cart/update/{productId}', [CartController::class, 'updateQuantity']);
 
-// Route cho thanh toán và đặt hàng
+// Route cho đặt hàng
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
 Route::get('/order/success/{orderId}', [OrderController::class, 'viewOrder'])->name('order.success');

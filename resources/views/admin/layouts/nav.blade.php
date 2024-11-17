@@ -12,23 +12,22 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-    <li class="nav-item dropdown">
-    @auth('admin')
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ Auth::guard('admin')->user()->name ?? 'Admin' }}
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-                <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
-                    @csrf
-                    <button type="submit" class="dropdown-item">
-                        <i class="fas fa-sign-out-alt"></i> {{ __('Đăng xuất') }}
-                    </button>
-                </form>
-            </li>
-        </ul>
-    @endauth
-</li>
-
+        <li class="nav-item dropdown">
+            @auth('admin')
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ Auth::guard('admin')->user()->name ?? 'Admin' }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
+                            @csrf
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt"></i> {{ __('Đăng xuất') }}
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            @endauth
+        </li>
     </ul>
 </nav>

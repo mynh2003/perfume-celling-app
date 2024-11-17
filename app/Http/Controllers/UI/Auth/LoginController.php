@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers\UI\Auth;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+class LoginController extends Controller
+{
+    use AuthenticatesUsers;
+
+    protected $redirectTo = '/home';
+
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
+    }
+
+    /**
+     * Override the username method to use `username` instead of `email`.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
+    }
+}

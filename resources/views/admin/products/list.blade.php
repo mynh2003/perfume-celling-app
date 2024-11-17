@@ -2,41 +2,6 @@
 
 @section('admin-content')
 @if(session('success'))
-<style>
-    .btn {
-        font-size: 14px;
-        /* Kích thước font của các nút */
-        padding: 8px 16px;
-        /* Padding để đảm bảo nút có kích thước vừa phải */
-        height: auto;
-        /* Đảm bảo chiều cao tự động theo nội dung */
-        min-width: 90px;
-        /* Đảm bảo các nút có độ rộng tối thiểu bằng nhau */
-    }
-
-    /* Đảm bảo nút "Chi tiết" không bị quá rộng */
-    #toggle-details-btn {
-        white-space: nowrap;
-        /* Giữ chữ "Chi tiết" trên một dòng */
-    }
-
-    .d-flex {
-        display: flex;
-        justify-content: space-between;
-        /* Các nút được căn chỉnh đều */
-    }
-
-    .flex-fill {
-        flex: 1;
-        /* Mỗi nút chiếm không gian bằng nhau */
-    }
-
-    .mx-1 {
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-</style>
-
 <div class="alert alert-success">
     {{ session('success') }}
 </div>
@@ -90,7 +55,7 @@
                 <td class="other-column">{{ $product->quantity }}</td>
                 <td>
                     <div class="d-flex mt-1">
-                        <button class="toggle-details-btn" class="btn btn-secondary flex-fill mx-1">Chi tiết</button>
+                        <button class="toggle-details-btn btn btn-info flex-fill mx-1">Chi tiết</button>
                         <a href="{{ route('products.edit', $product->id) }}">
                             <button class="btn btn-primary flex-fill mx-1">Sửa</button>
                         </a>
@@ -107,12 +72,8 @@
     </table>
 
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="product-pagination-container">
-
-            </div>
-        </div>
+    <div class="pagination-container">
+        {{ $products->links('vendor.pagination.bootstrap-4') }}
     </div>
 </div>
 <script>

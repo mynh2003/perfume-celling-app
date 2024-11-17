@@ -3,7 +3,7 @@
 @section('admin-content')
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card mt-5">
+        <div class="card my-5">
             <div class="card-header bg-dark">{{ __('Đăng ký tài khoản hệ thống')}}</div>
 
             <div class="card-body">

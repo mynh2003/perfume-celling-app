@@ -22,11 +22,11 @@
                     @csrf
                     <div class="d-flex align-items-center">
                         <select name="status" class="form-select me-2" style="width: auto;">
-                            <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                            <option value="confirmed" {{ $order->status == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
-                            <option value="shipped" {{ $order->status == 'shipped' ? 'selected' : '' }}>Shipped</option>
-                            <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>Delivered</option>
-                            <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                            <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Đang chờ</option>
+                            <option value="confirmed" {{ $order->status == 'confirmed' ? 'selected' : '' }}>Đã xác nhận</option>
+                            <option value="shipped" {{ $order->status == 'shipped' ? 'selected' : '' }}>Đã giao hàng</option>
+                            <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>Đã hoàn thành</option>
+                            <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Đã hủy</option>
                         </select>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>

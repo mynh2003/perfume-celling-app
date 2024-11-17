@@ -30,15 +30,25 @@
                         <td>{{ $order->user->name }}</td>
                         <td>{{ $order->order_date }}</td>
                         <td>
-                            <span class="badge 
-                                        @if ($order->status == 'pending') bg-warning 
-                                        @elseif ($order->status == 'confirmed') bg-info 
-                                        @elseif ($order->status == 'shipped') bg-primary 
-                                        @elseif ($order->status == 'delivered') bg-success 
-                                        @elseif ($order->status == 'cancelled') bg-danger 
-                                        @endif">
-                                {{ ucfirst($order->status) }}
-                            </span>
+                            @php
+                            $statusLabels = [
+                                'pending' => 'Đang chờ',
+                                'confirmed' => 'Đã xác nhận',
+                                'shipped' => 'Đã giao hàng',
+                                'delivered' => 'Đã hoàn thành',
+                                'cancelled' => 'Đã hủy',
+                            ];
+                        @endphp
+
+                        <span class="badge 
+                            @if ($order->status == 'pending') bg-warning 
+                            @elseif ($order->status == 'confirmed') bg-info 
+                            @elseif ($order->status == 'shipped') bg-primary 
+                            @elseif ($order->status == 'delivered') bg-success 
+                            @elseif ($order->status == 'cancelled') bg-danger 
+                            @endif">
+                            {{ $statusLabels[$order->status] ?? 'Không rõ' }}
+                        </span>
                         </td>
                         <td>{{ number_format($order->total_price, 0, ',', '.') }} ₫</td>
                         <td>
@@ -57,8 +67,8 @@
                     @endforelse
                 </tbody>
             </table>
-            <div class="mt-3">
-                {{ $orders->links('pagination::bootstrap-5') }}
+            <div class="pagination-container">
+                {{ $orders->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>
