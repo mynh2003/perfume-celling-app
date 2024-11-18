@@ -17,11 +17,41 @@ class ProductsController extends Controller
     {
         // Validation dữ liệu
         $request->validate([
-            'name' => 'required',
-            'category_id' => 'required',
-            'brand_id' => 'required',
-            'price' => 'required|numeric',
-            'quantity' => 'required|numeric',
+            'name' => 'required|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'brand_id' => 'required|exists:brands,id',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'price_buy' => 'required|numeric|min:0',
+            'details' => 'nullable|max:500',
+            'origin' => 'nullable|max:50',
+            'collection' => 'nullable|max:50',
+            'rel' => 'nullable|max:50',
+            'concentration' => 'nullable|max:50',
+            'fragrance_group' => 'nullable|max:50',
+            'style' => 'nullable|max:50',
+            'perfumer' => 'nullable|max:50',
+            'image_1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Kiểm tra ảnh bắt buộc
+        ], [
+            // Custom error messages
+            'name.required' => 'Tên sản phẩm là bắt buộc.',
+            'category_id.required' => 'Danh mục là bắt buộc.',
+            'category_id.exists' => 'Danh mục không hợp lệ.',
+            'brand_id.required' => 'Thương hiệu là bắt buộc.',
+            'brand_id.exists' => 'Thương hiệu không hợp lệ.',
+            'price.required' => 'Giá bán là bắt buộc.',
+            'price.numeric' => 'Giá bán phải là một số.',
+            'price.min' => 'Giá bán không được âm.',
+            'quantity.required' => 'Số lượng là bắt buộc.',
+            'quantity.integer' => 'Số lượng phải là một số nguyên.',
+            'quantity.min' => 'Số lượng không được âm.',
+            'price_buy.required' => 'Giá nhập là bắt buộc.',
+            'price_buy.numeric' => 'Giá nhập phải là một số.',
+            'price_buy.min' => 'Giá nhập không được âm.',
+            'image_1.required' => 'Ảnh sản phẩm là bắt buộc.',
+            'image_1.image' => 'Ảnh phải là một tệp hình ảnh.',
+            'image_1.mimes' => 'Ảnh chỉ hỗ trợ định dạng jpeg, png, jpg, gif.',
+            'image_1.max' => 'Dung lượng ảnh tối đa là 2MB.',
         ]);
     
         // Tạo đối tượng Product mới

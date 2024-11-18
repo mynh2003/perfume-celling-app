@@ -121,6 +121,9 @@
         cursor: pointer;
         transition: background-color 0.3s;
     }
+    .product-card button a{
+        color: white;
+    }
 
     .product-card button:hover {
         background-color: #dc0b0b;
@@ -196,7 +199,17 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+        <script>
+            alert("{{ session('success') }}");
+        </script>
+    @endif
 
+    @if (session('error'))
+        <script>
+            alert("{{ session('error') }}");
+        </script>
+    @endif
 <div class="slider">
     <div class="list">
         @foreach($slides as $slide)
@@ -223,7 +236,9 @@
         <div class="product-card">
             <img src="{{ asset('storage/manual/product/' . $product->image_1) }}" alt="{{ $product->name }}">
             <h3>{{ $product->name }}</h3>
-            <button>Mua ngay</button>
+            <button>
+                <a href="{{Auth::check() ? route('cart.add', ['id' => $product->id]) : 'javascript:void(0)' }}" onclick="{{ Auth::check() ? '' : 'notifyLogin()' }}">Thêm giỏ hàng</a>
+            </button>
         </div>
         @endforeach
     </div>

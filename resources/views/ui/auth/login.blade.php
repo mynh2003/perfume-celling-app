@@ -17,15 +17,6 @@
             text-align: center; /* Căn giữa chữ */
         }
 
-        .btn-primary {
-            background-color: #ff5722; /* Màu nền nút đăng nhập */
-            border: none; /* Bỏ viền */
-        }
-
-        .btn-primary:hover {
-            background-color: #e64a19; /* Màu nền khi hover */
-        }
-
         .btn-link {
             font-size: 14px;
             color: #007bff; /* Màu chữ cho nút liên kết */

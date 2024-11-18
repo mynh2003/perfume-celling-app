@@ -88,8 +88,7 @@
                     </div>
                     <!-- Modal Footer -->
                     <div class="modal-footer">
-                        <a id="addToCartLink" href="javascript:void(0)" class="btn btn-primary" onclick="{{ Auth::check() ? '' : 'notifyLogin()' }}">Thêm giỏ hàng</a>
-                        <button type="button" class="btn btn-danger">Mua ngay</button>
+                        <a id="addToCartLink" href="javascript:void(0)" class="btn btn-primary" onclick="{{ Auth::check() ? '' : 'notifyLogin()' }}">Mua ngay</a>          
                     </div>
                 </div>
             </div>
