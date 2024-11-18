@@ -38,7 +38,7 @@
     @yield('order_success-css')
 </head>
 <body>
-    <div id="app">
+    <div class="app">
         <header>
             @include('ui.layouts.header')
         </header>

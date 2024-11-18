@@ -6,6 +6,7 @@
 <div class="topcenter">
     <div class="container">
         <div class="topcenter-inner clearfix">
+            <i class="fa-solid fa-bars menu-toggle-menu-mobile"></i>
             <a href="/home" class="logo">
                 <img src="{{ asset('storage/manual/logo/' .$logo->first()->image)}}" alt="">
             </a>
@@ -79,7 +80,7 @@
         <div class="topcenter-menu clearfix">
             <div class="categories">
                 <div class="categories-title">
-                    <i class="fa-solid fa-bars"></i>
+                        <i class="fa-solid fa-bars "></i>
                     <span>DANH MỤC</span>
                     <i class="bi bi-caret-down-fill"></i>
                 </div>
@@ -99,9 +100,6 @@
                     <li><a href="{{ route('pages.about')}}" class="{{ request()->is('about') ? 'active' : '' }}">GIỚI THIỆU</a></li>
                     <li><a href="{{ route('pages.products')}}" class="{{ request()->is('products') ? 'active' : '' }}">SẢN PHẨM</a></li>
                     <li><a href="{{ route('pages.contact')}}"class="{{ request()->is('contact') ? 'active' : '' }}">LIÊN HỆ</a></li>
-                    <div class="btn-group open">
-                        <button type="button" class="btn btn-default dropdown-toggle aaa"></button>
-                    </div>
                 </ul>
             </div>
             <div class="hotline">
@@ -122,4 +120,72 @@
             </div>
         </div> 
     </div>
+    <div class="mainmenu-mobile">
+        <div class="mainmenu-mobile-container">
+        <div class="button-menu">
+            <i class="fa-solid fa-xmark close-menu-mobie"></i>
+        </div>
+        <ul class="mainmenu">
+            <li>
+                    @guest
+                        @if (Route::has('login'))
+                                <a class="dropdown-toggle-user" href="{{ route('login') }}">{{ __('ĐĂNG NHẬP') }}</a>
+                        @endif
+                    @else
+                        <a href="#" class="dropdown-toggle">
+                                {{ Auth::user()->name }}
+                        </a>
+                        <ul class="submenu list-unstyled">
+                            <li><a href="{{ route('user.profile') }}">{{ __('Thông tin') }}</a></li>
+                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Đăng xuất') }}</a></li>                          
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </ul>
+                    @endguest
+            </li>
+            <li><a href="{{ route('orders.history') }}" class="history-link">LỊCH SỬ ĐƠN HÀNG</a></li>
+            <li>
+                <a href="#" class="dropdown-toggle">DANH MỤC</a>
+                <ul class="submenu list-unstyled">
+                    <li><a href="{{ route('pages.products')}}">Sản phẩm</a></li>
+                    @foreach($categories as $category)
+                    <li>
+                        <a href="{{ route('product.productWithCategory', ['category_id' => $category->id]) }}">
+                            {{ $category->name }}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+            </li>
+            <li><a href="{{ route('pages.index') }}" class="{{ request()->is('home') ? 'active' : '' }}">TRANG CHỦ</a></li>
+            <li><a href="{{ route('pages.about') }}" class="{{ request()->is('about') ? 'active' : '' }}">GIỚI THIỆU</a></li>
+            <li><a href="{{ route('pages.contact') }}" class="{{ request()->is('contact') ? 'active' : '' }}">LIÊN HỆ</a></li>
+        </ul>
+        </div>
+    </div>
 </div>
+<script>
+    document.querySelector('.menu-toggle-menu-mobile').addEventListener('click', function() {
+        const menu = document.querySelector('.mainmenu-mobile');
+        menu.classList.add('show');
+    });
+    document.querySelector('.close-menu-mobie').addEventListener('click', function() {
+        const menu = document.querySelector('.mainmenu-mobile');
+        menu.classList.remove('show');
+    });
+
+    // Thêm sự kiện click cho các dropdown-toggle
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+            const submenu = this.nextElementSibling; // Lấy submenu
+            if (submenu) {
+                submenu.style.display = (submenu.style.display === 'contents') ? 'none' : 'contents'; // Chuyển đổi hiển thị
+            }
+        });
+    });
+</script>
+
+

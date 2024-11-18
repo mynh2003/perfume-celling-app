@@ -1,15 +1,12 @@
 @extends('ui.layouts.app')
-
 @section('content')
+<div class="container">
     <div class="post-image">
-        <img src="{{ asset('storage/manual/avatar/anhbia.png') }}" alt="">
+        <img src="{{ asset('storage/manual/avatar/anhbia.png') }}" class="img-fluid" alt="...">
     </div>
-    <div class="post-header">
-        <div class="post-title">
-            Giới Thiệu Về <br>
-            Vperfume - Scent Bliss
-        </div>
-        <div class="line-post">&nbsp</div>
+    <div class="post-header text-center my-4">
+        <h1 class="post-title">Giới Thiệu Về <br> Vperfume - Scent Bliss</h1>
+        <div class="line-post mx-auto"></div>
     </div>
     <div class="post-content">
         <p>

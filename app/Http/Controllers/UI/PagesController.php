@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function index() {
-        return view('ui.pages.index');
+        $products = Product::all();
+        return view('ui.pages.index', compact('products'));
     }
 
     public function products()
