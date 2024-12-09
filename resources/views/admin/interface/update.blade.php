@@ -107,9 +107,6 @@
                         <button type="submit" class="btn btn-success" name="btnsubmit_Slide">Xác nhận</button>
                     </fieldset>
                 </form>
-
-                <a href="" class="btn btn-danger">Hủy</a>
-                <!-- </form> -->
             </div>
         </div>
     </div>

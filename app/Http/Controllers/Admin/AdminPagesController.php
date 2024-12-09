@@ -22,7 +22,7 @@ class AdminPagesController extends Controller
         return view('admin.products.add');
     }
     public function listBrand(){
-        $listBrand = Brand::paginate(10);
+        $listBrand = Brand::paginate(12);
         return view('admin.brand.list',compact('listBrand'));
     }
     public function addBrand(){

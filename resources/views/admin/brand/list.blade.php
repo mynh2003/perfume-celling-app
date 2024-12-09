@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             <!-- Hiển thị dữ liệu mẫu -->
-            @foreach($brands as $brand)
+            @foreach($listBrand as $brand)
             <tr>
                 <td>{{ $brand->id }}</td>
                 <td>{{ $brand->name }}</td>
